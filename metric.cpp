@@ -361,6 +361,8 @@ namespace pdiff
         auto pixels_failed = 0u;
         auto error_sum = 0.;
 
+        auto pixels_max = w * h;
+
         #pragma omp parallel for reduction(+ : pixels_failed, error_sum) \
             shared(args, a_a, a_b, b_a, b_b, cpd, f_freq)
         for (auto y = 0; y < static_cast<ptrdiff_t>(h); y++)
@@ -451,9 +453,9 @@ namespace pdiff
         }
 
         const auto different =
-            std::to_string(pixels_failed) + " pixels are different\n";
+            std::to_string(pixels_failed) + "/" + std::to_string(pixels_max) + "("+std::to_string(float(pixels_failed) / float(pixels_max))+") pixels are different\n";
 
-        const auto passed = pixels_failed < args.threshold_pixels;
+        const auto passed = pixels_failed < args.threshold_pixels * pixels_max;
 
         if (output_reason)
         {

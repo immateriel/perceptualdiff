@@ -46,7 +46,7 @@ namespace pdiff
         float luminance;
 
         // How many pixels different to ignore.
-        unsigned int threshold_pixels;
+        float threshold_pixels;
 
         // How much color to use in the metric.
         // 0.0 is the same as luminance_only_ = true,

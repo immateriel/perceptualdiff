@@ -43,7 +43,7 @@ namespace pdiff
 "Options:\n"
 "  --verbose         Turn on verbose mode\n"
 "  --fov deg         Field of view in degrees [0.1, 89.9] (default: 45.0)\n"
-"  --threshold p     Number of pixels p below which differences are ignored\n"
+"  --threshold p     Percent of pixels p below which differences are ignored\n"
 "  --gamma g         Value to convert rgb into linear space (default: 2.2)\n"
 "  --luminance l     White luminance (default: 100.0 cdm^-2)\n"
 "  --luminance-only  Only consider luminance; ignore chroma (color) in the\n"
@@ -124,14 +124,14 @@ namespace pdiff
                 {
                     if (++i < argc)
                     {
-                        auto temporary = std::stoi(argv[i]);
+                        auto temporary = std::stof(argv[i]);
                         if (temporary < 0)
                         {
                             throw PerceptualDiffException(
                                 "-threshold must be positive");
                         }
                         parameters_.threshold_pixels =
-                            static_cast<unsigned int>(temporary);
+                            static_cast<float>(temporary);
                     }
                 }
                 else if (option_matches(argv[i], "gamma"))
