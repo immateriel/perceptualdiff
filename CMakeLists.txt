@@ -1,6 +1,6 @@
 project(perceptualdiff)
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.0)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -10,7 +10,7 @@ if(NOT MSVC)
     add_compile_options(
         -Wall -Wextra -pedantic -Wcast-qual -Wpointer-arith -Winit-self
         -Wswitch-default -Wmissing-include-dirs -Wold-style-cast
-        -Wnon-virtual-dtor -Wshadow -Wno-unknown-pragmas)
+        -Wnon-virtual-dtor -Wshadow -Wno-unknown-pragmas -std=c++11)
 endif()
 
 find_package(OpenMP)
